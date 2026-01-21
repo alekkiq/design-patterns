@@ -1,14 +1,7 @@
 package FactoryMethod.Tiles;
 
 public abstract class Tile {
-    protected abstract void action();
-
-    public void getCharacter() {
-        // TODO
-    }
-
-    public String getDescription() {
-        // TODO
-        return "";
-    }
+    public abstract char getCharacter();
+    public abstract String getType();
+    public abstract String getDescription();
 }
