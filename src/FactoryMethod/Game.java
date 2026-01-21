@@ -1,8 +1,10 @@
 package FactoryMethod;
 
+import FactoryMethod.Maps.*;
+
 public class Game {
-    private void createMap() {
-        // TODO
+    public Map createMap() {
+        return new CityMap();
     }
 
     public static void main(String[] args) {

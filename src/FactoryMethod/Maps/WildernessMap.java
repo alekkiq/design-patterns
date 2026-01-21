@@ -1,8 +1,10 @@
 package FactoryMethod.Maps;
 
 public class WildernessMap extends Map {
-    @Override
-    protected void createTile() {
+    private final char[] tileTypes = {'S', 'W', 'F'};
 
+    @Override
+    protected char createTile() {
+        return getRandomTileType(this.tileTypes);
     }
 }
