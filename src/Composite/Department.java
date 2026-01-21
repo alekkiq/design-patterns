@@ -1,74 +1,51 @@
 package Composite;
 import java.util.ArrayList;
 
-public class Department {
+public class Department implements IOrganizationUnit {
     private String name;
-
-    private ArrayList<Department> departments = new ArrayList<>();
-    private ArrayList<Employee> employees = new ArrayList<>();
+    private final ArrayList<IOrganizationUnit> children = new ArrayList<>();
 
     public Department(String name) {
         this.name = name;
     }
 
+    public void addChild(IOrganizationUnit child) {
+        this.children.add(child);
+    }
+
+    @Override
     public String getName() {
         return this.name;
     }
 
-    public void addDepartment(Department department) {
-        this.departments.add(department);
-    }
-
-    public void addEmployee(Employee employee) {
-        this.employees.add(employee);
-    }
-
+    @Override
     public double getTotalSalary() {
         double totalSalary = 0;
-
-        for (Employee employee : this.employees) {
-            totalSalary += employee.getSalary();
+        for (IOrganizationUnit child : this.children) {
+            totalSalary += child.getTotalSalary();
         }
-
-        for (Department department : this.departments) {
-            totalSalary += department.getTotalSalary();
-        }
-
         return totalSalary;
     }
 
-    private void buildXml(StringBuilder string, String indent) {
-        string.append(indent).append("<department name=\"").append(this.name).append("\" total-salary=\"").append(this.getTotalSalary()).append("\">\n");
+    @Override
+    public void buildXml(StringBuilder string, String indent) {
+        string
+            .append(indent)
+            .append("<department name=\"")
+            .append(this.name)
+            .append("\" totalSalary=\"")
+            .append(this.getTotalSalary())
+            .append("\">\n");
 
-        // print employees, if any
-        if (!this.employees.isEmpty()) {
-            string.append(indent).append(" <employees>\n");
-
-            for (Employee employee : this.employees) {
-                string.append(indent).append("  <employee name=\"").append(employee.getName())
-                        .append("\" salary=\"").append(employee.getSalary()).append("\"/>\n");
-            }
-
-            string.append(indent).append(" </employees>\n");
+        for (IOrganizationUnit child : this.children) {
+            child.buildXml(string, indent + "  ");
         }
-
-        // print child departments, if any
-        if (!this.departments.isEmpty()) {
-            string.append(indent).append(" <departments>\n");
-
-            for (Department department : this.departments) {
-                department.buildXml(string, indent + "  ");
-            }
-
-            string.append(indent).append(" </departments>\n");
-        }
-
         string.append(indent).append("</department>\n");
     }
 
-    public void printDepartmentInfo(String indent) {
-        StringBuilder info = new StringBuilder();
-        this.buildXml(info, indent);
-        System.out.println(info);
+    public void printInfo(String indent) {
+        StringBuilder sb = new StringBuilder();
+        this.buildXml(sb, indent);
+        System.out.print(sb);
     }
 }

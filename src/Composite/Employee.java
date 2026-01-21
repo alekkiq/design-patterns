@@ -1,6 +1,6 @@
 package Composite;
 
-public class Employee {
+public class Employee implements IOrganizationUnit {
     private String name;
     private double salary;
 
@@ -9,11 +9,23 @@ public class Employee {
         this.salary = salary;
     }
 
+    @Override
     public String getName() {
         return this.name;
     }
 
-    public double getSalary() {
+    @Override
+    public double getTotalSalary() {
         return this.salary;
+    }
+
+    @Override
+    public void buildXml(StringBuilder sb, String indent) {
+        sb.append(indent)
+            .append("<employee name=\"")
+            .append(this.name)
+            .append("\" salary=\"")
+            .append(this.salary)
+            .append("\"/>\n");
     }
 }
