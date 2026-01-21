@@ -23,7 +23,7 @@ public class Department {
         this.employees.add(employee);
     }
 
-    public void getTotalSalary() {
+    public double getTotalSalary() {
         double totalSalary = 0;
 
         for (Employee employee : this.employees) {
@@ -31,14 +31,14 @@ public class Department {
         }
 
         for (Department department : this.departments) {
-            department.getTotalSalary();
+            totalSalary += department.getTotalSalary();
         }
 
-        System.out.println("Total salary for department " + this.name + ": " + totalSalary);
+        return totalSalary;
     }
 
     private void buildXml(StringBuilder string, String indent) {
-        string.append(indent).append("<department name=\"").append(this.name).append("\">\n");
+        string.append(indent).append("<department name=\"").append(this.name).append("\" total-salary=\"").append(this.getTotalSalary()).append("\">\n");
 
         // print employees, if any
         if (!this.employees.isEmpty()) {
