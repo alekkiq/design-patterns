@@ -1,10 +1,18 @@
 package FactoryMethod.Tiles;
 
 public class SwampTile extends Tile {
-    public SwampTile() {
-        super('S', "swamp");
-    }
+    @Override
+    public char getCharacter() { return 'S'; }
 
     @Override
-    public void action() {return;}
+    public String getType() { return "Swamp"; }
+
+    @Override
+    public String getDescription() {
+        return "Muddy swamp that slows movement and may contain an ogre.";
+    }
+
+    public void action() {
+        // not used
+    }
 }

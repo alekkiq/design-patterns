@@ -1,10 +1,18 @@
 package FactoryMethod.Tiles;
 
 public class RoadTile extends Tile {
-    public RoadTile() {
-        super('R', "road");
-    }
+    @Override
+    public char getCharacter() { return 'R'; }
 
     @Override
-    public void action() {return;}
+    public String getType() { return "Road"; }
+
+    @Override
+    public String getDescription() {
+        return "Road tile that allows easy travel.";
+    }
+
+    public void action() {
+        // not used
+    }
 }

@@ -1,10 +1,18 @@
 package FactoryMethod.Tiles;
 
 public class BuildingTile extends Tile {
-    public BuildingTile() {
-        super('B', "building");
-    }
+    @Override
+    public char getCharacter() { return 'B'; }
 
     @Override
-    public void action() {return;}
+    public String getType() { return "Building"; }
+
+    @Override
+    public String getDescription() {
+        return "Building that could contain loot or perhaps enemies.";
+    }
+
+    public void action() {
+        // not used
+    }
 }

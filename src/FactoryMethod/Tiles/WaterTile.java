@@ -1,10 +1,18 @@
 package FactoryMethod.Tiles;
 
 public class WaterTile extends Tile {
-    public WaterTile() {
-        super('W', "water");
-    }
+    @Override
+    public char getCharacter() { return 'W'; }
 
     @Override
-    public void action() {return;}
+    public String getType() { return "Water"; }
+
+    @Override
+    public String getDescription() {
+        return "Water tile that slows movement.";
+    }
+
+    public void action() {
+        // not used
+    }
 }
