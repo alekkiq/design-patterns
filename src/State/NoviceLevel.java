@@ -6,8 +6,19 @@ public class NoviceLevel extends State {
     }
 
     public void action() {
-        String[] options = {"Train"};
+        String[] options = {"Train to gain experience"};
 
-        //if ()
+        switch (this.getGame().getUserChoice(options)) {
+            case 1:
+                this.getGame().getCharacter().train();
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+
+        if (this.getGame().getCharacter().getLevel() >= 2) {
+            System.out.println("You leveled up to Intermediate.");
+            this.getGame().setState(new IntermediateLevel(this.getGame()));
+        }
     }
 }
