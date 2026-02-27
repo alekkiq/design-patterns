@@ -7,8 +7,8 @@ public class Game {
     private State state;
     private Character character;
 
-    public Game(String characterName) {
-        this.character = new Character(characterName);
+    public Game() {
+        this.character = new Character();
         this.state = new NoviceLevel(this);
     }
 
@@ -19,16 +19,22 @@ public class Game {
             System.out.println(i + ". " + options[i - 1]);
         }
 
-        return this.scanner.nextInt();
+        return scanner.nextInt();
     }
 
     public void play() {
+        System.out.println("Enter your character's name:");
+        String characterName = scanner.nextLine();
+        this.character.setName(characterName);
+        System.out.println("\n");
+
         while (true) {
             if (this.state == null) {
                 System.out.println("massive bug occurred");
                 return;
             }
-
+            System.out.println("\n");
+            System.out.println(this.character.toString());
             this.state.action();
         }
     }
