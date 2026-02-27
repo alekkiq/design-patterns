@@ -8,6 +8,6 @@ public class Main {
         System.out.println();
 
         Printer printerCrazy = new EncryptedPrinter(new XMLPrinter(new BasicPrinter()));
-        printerCrazy.print("gambina on hyvää");
+        printerCrazy.print("moikka moi vaan");
     }
 }
