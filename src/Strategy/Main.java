@@ -9,7 +9,7 @@ public class Main {
 
         System.out.println("Array item randomizer bounds for each test: 0 to 100\n");
 
-        System.out.println("Comparing sorting algorithms with small array:");
+        System.out.println("Comparing sorting algorithms with small array:\n");
 
         Sorter sorter = new Sorter(new BubbleSort());
 
@@ -19,7 +19,7 @@ public class Main {
         sorter.setStrategy(new PigeonholeSort());
         benchmarkSort(sorter, rng, "PigeonholeSort", smallSize);
 
-        System.out.println("Comparing sorting algorithms with large array:");
+        System.out.println("Comparing sorting algorithms with large array:\n");
 
         sorter.setStrategy(new BubbleSort());
         benchmarkSort(sorter, rng, "BubbleSort", largeSize);
@@ -32,7 +32,7 @@ public class Main {
     private static void benchmarkSort(Sorter sorter, Random rng, String algorithmName, int size) {
         int[] array = rng.ints(size, 0, 100).toArray();
 
-        System.out.println("Sorting large array with " + algorithmName + "...");
+        System.out.println("Sorting array (size: " + size + ") with " + algorithmName + "...");
 
         long startTime = System.nanoTime();
         sorter.sort(array);
