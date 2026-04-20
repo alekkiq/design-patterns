@@ -1,4 +1,4 @@
-package Prototype;
+package prototype;
 
 public class Book implements Prototype {
     private String title;
